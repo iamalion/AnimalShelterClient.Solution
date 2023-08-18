@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnimalShelterClient.Models
 {
-    public class AnimalShelterClient
+    public class Animal
     {
          public int AnimalId { get; set; }
         [Required]
@@ -17,6 +18,7 @@ namespace AnimalShelterClient.Models
         public int Age { get; set; }
         public string Description { get; set; }
         public bool Available { get; set; }
+
         public static List<Animal> GetAnimals()
         {
             var apiCallTask = ApiHelper.GetAll();
@@ -26,6 +28,16 @@ namespace AnimalShelterClient.Models
             List<Animal> animalList = JsonConvert.DeserializeObject<List<Animal>>(jsonResponse.ToString());
 
             return animalList;
+        }
+        public static Animal GetDetails(int id)
+        {
+            var apiCallTask = ApiHelper.Get(id);
+            var result = apiCallTask.Result;
+
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+            Animal animal = JsonConvert.DeserializeObject<Animal>(jsonResponse.ToString());
+
+            return animal;
         }
     }
 }
