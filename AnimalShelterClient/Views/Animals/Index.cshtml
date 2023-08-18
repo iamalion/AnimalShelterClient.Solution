@@ -3,8 +3,11 @@
     ViewData["Title"] = "Animals";
 }
 
-<h1>All Animals:</h1>
+<h1>All Animals</h1>
+<h3>Available actions:</h3>
+<p>@Html.ActionLink("Add a new animal", "Create")</p>
 
+<h3>Animals:</h3>
 <ol>
 @foreach (Animal animal in Model)
 {
