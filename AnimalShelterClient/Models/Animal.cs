@@ -1,20 +1,16 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-// using System.ComponentModel.DataAnnotations;
 
 namespace AnimalShelterClient.Models
 {
     public class Animal
     {
         public int AnimalId { get; set; }
-        // [Required]
         public string Name { get; set; }
-        // [Required]
         public string Species { get; set; }
         public string Breed { get; set; }
-        // [Range(0, 30, ErrorMessage ="Age must be between 0 and 30")]
         public int Age { get; set; }
         public string Description { get; set; }
         public bool Available { get; set; }
@@ -31,8 +27,8 @@ namespace AnimalShelterClient.Models
         }
         public static Animal GetDetails(int id)
         {
-            var apiCallTask = ApiHelper.Get(id);
-            var result = apiCallTask.Result;
+            Task<string> apiCallTask = ApiHelper.Get(id);
+            string result = apiCallTask.Result;
 
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
             Animal animal = JsonConvert.DeserializeObject<Animal>(jsonResponse.ToString());
