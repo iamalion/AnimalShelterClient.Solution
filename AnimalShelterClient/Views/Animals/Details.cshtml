@@ -5,7 +5,11 @@
 <h1>All About @Model.Name</h1>
 
 <p>Species: @Model.Species</p>
+<p>Breed: @Model.Breed</p>
 <p>Age: @Model.Age</p>
+<p>Description: @Model.Description</p>
+<p>Available? @Model.Available</p>
+
 
 <p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.AnimalId })</p>
 <p>@Html.ActionLink("Delete animal", "Delete", new { id = @Model.AnimalId })</p>
